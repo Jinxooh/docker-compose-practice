@@ -1,0 +1,15 @@
+FROM node:14
+
+WORKDIR /usr/src/app
+
+COPY package.json .
+# RUN npm install -g yarn
+
+RUN yarn set version berry
+
+COPY package.json yarn.lock .yarn .yarnrc.yml ./
+RUN yarn install
+
+COPY . .
+
+CMD ["yarn", "start"]
